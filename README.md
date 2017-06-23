@@ -9,8 +9,8 @@ A online statistic sampling result is listed in *result.txt*.
 
 A randomness ratio is added so that the user can control the degree of randomness other than just using the statistical result.
 
-The idea is to use statistical result as a probability distribution function in binomial distribution. The aim is to find the value which only repeat once with expected outcome value. 
+The idea is to use statistical result as a probability distribution function in binomial distribution. The aim is to find the value which only repeat once. 
 
-i.e. f(x)*(1-f(x))^(N-1)(x+60). 
+i.e. f(x)*(1-f(x))^(N-1). 
 
 Where x is the choosed number and f(x) is the probability distribution function. N is the number of player in this game.

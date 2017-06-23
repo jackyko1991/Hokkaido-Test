@@ -12,14 +12,15 @@ def Expected(N,distri):
 	# calculate expected outcome when N people are in this game, with specific choice distribution
 	expected = []
 	for i in xrange(100):
-		expected.append(distri[i]*(1-distri[i])**(N-1)*(i+60))
+		# expected.append(distri[i]*(1-distri[i])**(N-1)*(i+60))
+		expected.append(distri[i]*(1-distri[i])**(N-1)*(i))
 	return expected
 
 def main():
 	my_data = genfromtxt('./result.txt', delimiter=',')
 
 	# adding random choice to original stat
-	randomness_ratio = 0.5
+	randomness_ratio = 1
 
 	ran_player = int(my_data.size*randomness_ratio)
 	for i in xrange(ran_player):
@@ -45,7 +46,7 @@ def main():
 	for i in xrange(num_of_player):
 		expected.append(Expected(i+1,n))
 		best_choice.append(np.argmax(expected[i])+1)
-		print i+1,best_choice[i]
+		# print i+1,best_choice[i]
 
 	plt.subplot(212)
 	x = np.arange(0, num_of_player, 1)
@@ -56,6 +57,7 @@ def main():
 	plt.ylabel("Best choice")
 	plt.grid(True)
 	plt.xlim([1,num_of_player])
+	plt.ylim([1,100])
 	plt.show()
 
 if __name__ == "__main__":
