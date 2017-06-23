@@ -16,12 +16,10 @@ def Expected(N,distri):
 		expected.append(distri[i]*(1-distri[i])**(N-1)*(i))
 	return expected
 
-def main():
-	my_data = genfromtxt('./result.txt', delimiter=',')
+def main(stat_path,randomness_ratio=0,num_of_player = 1000,):
+	my_data = genfromtxt(stat_path, delimiter=',')
 
 	# adding random choice to original stat
-	randomness_ratio = 1
-
 	ran_player = int(my_data.size*randomness_ratio)
 	for i in xrange(ran_player):
 		my_data = np.append(my_data, randint(1,100))
@@ -41,8 +39,6 @@ def main():
 	expected = []
 	best_choice = []
 
-	num_of_player = 800
-
 	for i in xrange(num_of_player):
 		expected.append(Expected(i+1,n))
 		best_choice.append(np.argmax(expected[i])+1)
@@ -61,4 +57,8 @@ def main():
 	plt.show()
 
 if __name__ == "__main__":
-	main()
+	stat_path = './result.txt'
+	randomness_ratio = 1
+	num_of_player = 1000
+
+	main(stat_path,randomness_ratio,num_of_player)
